@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Animation</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Using a monospace font for typing effect */
+            /*background-color: #282c34; /* Dark background similar to a terminal */
+            background-image: url('hfloral.jpeg');
+            color: #272a2b; /* Light blue text for contrast */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Hide overflow from cursor animation */
+            font-size: 2em; /* Larger text for visibility */
+        }
+        button {
+            padding: 15px 30px;
+            font-size: large;
+            background-color: #c4348c;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 6px;
+        }
+
+        .delayed-button {
+            /* Basic button styling */
+            padding: 8px 10px;
+            font-size: large;
+            background-color: #4c7d5d;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            animation-name: fadeIn; /* Name of the animation to use */
+            animation-duration: 1s; /* How long the fade-in animation itself takes */
+            animation-delay: 14s; /* <<< THE DELAY: Button appears after 3 seconds */
+            animation-fill-mode: forwards; /* Keep the button visible after animation ends */
+            opacity: 0; /* Start invisible */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 2);
+}
+
+/* Define the fadeIn animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+button:hover {
+    background-color: #315c4a;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 2);
+}
+
+.typing-container {
+    border-right: 3px solid #61dafb; /* Simulate a blinking cursor with right border */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide text that overflows before typing */
+    animation:blink-caret 0.75s step-end infinite; /* Cursor blink animation */
+    padding-right: 5px; /* Space for the cursor */
+    display: inline-block; /* Essential for nowrap and border-right to work */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+        }
+
+        /* Keyframes for the blinking cursor */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #61dafb; } /* Blink the cursor */
+        }
+
+        /* Optional: Text that appears after typing */
+        .after-typing-text {
+            margin-top: 20px;
+            color: #a0a0a0;
+            font-size: 0.8em;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 1s ease-in-out; /* Smooth fade-in */
+        }
+
+        /* Basic Google Font import - if you want Roboto Mono */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+    </style>
+</head>
+<body>
+
+    <div id="typed-text" class="typing-container"></div>
+    <div id="after-text" class="after-typing-text"></div>
+
+    <button class="delayed-button" onclick="goToInternalPage()">Look for the surprise👻</button>
+    
+
+    <script>
+        // Array of texts to type out
+        const texts = [
+            "Hheyyyy.....❤️",
+            "Here is a little surprise for you 😍",
+            "Hope you like it!...💞"
+        ];
+        let textIndex = 0; // Current text in the array
+        let charIndex = 0; // Current character in the text
+        const typingSpeed = 100; // Milliseconds per character (lower is faster)
+        const pauseBetweenTexts = 1500; // Milliseconds to wait before typing next text
+
+        const typedTextElement = document.getElementById('typed-text');
+        const afterTextElement = document.getElementById('after-text');
+
+        function goToInternalPage() {
+            window.location.href = "bd.html"; // Make sure this file exists in the same directory!
+        }
+        function type() {
+            if (charIndex < texts[textIndex].length) {
+                // Add next character
+                typedTextElement.textContent += texts[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed); // Schedule next character
+            } else {
+                // Text finished typing, pause then delete or move to next
+                setTimeout(erase, pauseBetweenTexts); // Pause before erasing
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                // Remove last character
+                typedTextElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, typingSpeed / 2); // Erase faster
+            } else {
+                // Text completely erased, move to next text or loop
+                textIndex = (textIndex + 1) % texts.length; // Cycle through texts
+                setTimeout(type, typingSpeed); // Start typing next text
+            }
+        }
+
+        // Function to run after all typing is complete (if not looping)
+        function finishTypingSequence() {
+            typedTextElement.style.borderRight = 'none'; // Stop cursor blink
+            afterTextElement.textContent = "Thank you for watching!";
+            afterTextElement.style.opacity = 1; // Fade in the after-text
+        }
+
+
+        // --- Initial setup to start the animation ---
+        // If you want it to loop indefinitely:
+        type(); // Start the typing animation
+
+        // If you want it to type once and then stop:
+        /*
+        function typeOnce(text, element, callback) {
+            let i = 0;
+            function typeChar() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, typingSpeed);
+                } else {
+                    if (callback) callback();
+                }
+            }
+            typeChar();
+        }
+
+        // Example of typing once and showing after text
+        const finalMessage = "This is the final message typed out.";
+        typeOnce(finalMessage, typedTextElement, () => {
+             // Optional: Hide cursor after final message
+            typedTextElement.style.animation = 'none'; 
+            typedTextElement.style.borderRight = 'none';
+            finishTypingSequence(); // Call your completion function
+        });
+        */
+    </script>
+
+</body>
+</html>

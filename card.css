@@ -1,0 +1,198 @@
+body {
+    background-image: url('bg1.jpg');
+    font-family: sans-serif;
+    margin: 0;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: 'Poppins', cursive;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);       
+}
+button:hover {
+    background-color: #0056b3 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+}
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+/* Yes/No button styles */
+.yes-button {
+    background-color: #97565a; /* Green for Yes */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Poppins', cursive;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.yes-button:hover {
+    background-color: #542f31 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+}
+.yes-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.no-button {
+    background-color: #97565a; /* Red for No */
+    color: white;
+}
+.no-button:hover {
+    background-color: #542f31 !important;
+}
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 20px; /* Add some space above the buttons */
+}
+.card { 
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(22, 20, 20, 0.2);
+    width: 400px; 
+    height: 550px;
+    padding: 20 px; 
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+}
+.card:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.card.open {
+    transform: rotateY(180deg);
+}
+/*
+.front, .inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back face /*
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/*.front {
+    background-color: #673c6a; /* Light orange
+    color: #333;
+}*/
+
+.front img {
+    max-width: 80%;
+    max-height: 60%;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.front h1 {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: italic;
+   /* font-family: "Monsieur La Doulaise", cursive;*/
+    font-weight: 400;
+    font-size: 2.5em;
+    color: solid black;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+  
+.inside {
+    background-color: #fce4ec; 
+    color: #060606;
+    transform: rotateY(180deg); /* Initially rotated to hide */
+    text-align: center;
+}
+
+.inside h2 {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-style: unset;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.inside p {
+    font-family: "Kaushan Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: medium;
+    text-decoration: solid;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.front, .inside {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back face during the flip*/ 
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Default background if image fails to load*/ 
+}
+
+.front {
+    background-image: url('bgbrownpaper.jpg'); /* Replace with your front image URL or path */
+    background-size: cover;
+    background-position: center;
+    color: rgb(0, 0, 0); /* Adjust text color for front image */
+}
+
+.inside {
+    background-image: url('hpic.jpeg'); /* Replace with your inside image URL or path */
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg); /* Initially rotated to hide */
+    color: #000000; /* Adjust text color for inside image*/ 
+}
+
+/*.front h1, 
+.front p,  {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}*/
+
+.rounded-button {
+
+    border-radius: 25px;
+
+}
