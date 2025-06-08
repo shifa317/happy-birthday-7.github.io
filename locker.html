@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locker</title>
+    <link rel="stylesheet" href="locker.css">
+    
+</head>
+<body>
+    <div class="login-container">
+        <h1>Locker🔐</h1><br>
+        <form id="loginForm" onsubmit="event.preventDefault(); checkCredentials();">
+            <label for=password>Enter our secret name☺️</label><br><br>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter Name" required>
+
+            <label for="pastDate">Our first meet😉</label><br><br>
+            <input class="date" placeholder="date" id="pastDate" type="date" name="pastDate" size=20 maxlength=20 required> <br><br>
+            
+            <button class="submit-button"  onclick="checkPassword()" >Enter</button>
+            <p id="correct-password"></p>
+            <p id="error-message">Incorrect password😡👊. </p>
+        </form>
+    </div>
+    <script>
+        function checkCredentials() {
+            const correctPassword = "Ijjashifa"; // !! VERY INSECURE - VISIBLE IN SOURCE CODE !!
+            const correctPastDate = "2022-09-03"; 
+            const enteredPassword = document.getElementById("passwordInput").value;
+            const enteredDate = document.getElementById("pastDate").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (enteredPassword === correctPassword) {
+                // If the password is correct, redirect to the protected page
+                window.location.href = "photos.html";
+            } else {
+                errorMessage.style.display = "block"; // Show error message
+                document.getElementById("passwordInput").value = ""; // Clear password input
+            }
+        }
+    </script>
+
+        
+    
+
+
+</body>
+</html>
