@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Photo Album</title>
+    <style>
+        /* Basic CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #555;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .photo-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .photo-item img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            display: block;
+        }
+        .photo-item p {
+            padding: 10px;
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .photo-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+  
+            border: 1px solid #ddd;
+  
+            border-radius: 5px;
+  
+            overflow: hidden;
+  
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  
+            transition: 0.5s ease;
+  
+            cursor: pointer;
+        }
+
+        .card:hover {
+
+            transform: scale(1.1);
+        }
+        .card img{    width: 100%;
+            height: fit-content;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            
+        }
+        .card img:hover {
+            transform: scale(1.05);
+            display: block;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);    
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 60%;
+            border-radius: 5px;
+        }
+        .close-btn{
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .close-btn:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><u>Our Little Memories💞</u></h1>
+
+    <div class="gallery">
+        <div class="card">
+          
+                <img src="Nsletter.jpg" alt="Beautiful Landscape">
+                <p>A stunning letters that cover my hand☺️.</p>
+            </a>
+        </div>
+
+        <div class="card">
+           
+                <img src="ns.jpeg" alt="Urban City at Night">
+                <p>This is my fav words. It's gives me a energy🩷.</p>
+            </a>
+        </div>
+
+        <div class="card">
+        
+                <img src="id.jpeg" alt="Cute Puppy">
+                <p>An adorable blue and purple. It's keeps a senior junior relation😅.</p>
+            </a>
+        </div>
+
+        <div class="card">
+            
+                <img src="Screenshot_20250331_231333_com.instagram.android.jpg" alt="Delicious Food">
+                <p>I made up together. Insha Allah one day we will be together on Eid day. Forever❤️.</p>
+            </a>
+        </div>
+
+        <div class="card">
+            
+                <img src="us.jpg" alt="Travel Destination">
+                <p>Our First college day  and I wore saree . Because I want to show how I looked liked🤗.</p>
+            </a>
+        </div>
+
+        <div class="card">
+           
+                <img src="Snapchat-551298268.jpg" alt="Golden Sunset">
+                <p>it's been while since 2022 and still it's together with me. It makes me more lovable and energetic😉💞.</p>
+            </a>
+        </div>
+    </div>
+    <div id="lightbox" class="lightbox">
+        <span id="closeBtn" class="close-btn">&times;</span>
+        <img id="lightboxImg" src="" alt="Large Image">
+    </div>
+
+    <script>
+        const card = document.querySelectorAll('.card img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.getElementById('closeBtn');
+
+        card.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            lightboxImg.src = '';
+        });
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                lightbox.style.display = 'none';
+                lightboxImg.src = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
